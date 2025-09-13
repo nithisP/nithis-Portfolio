@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NITHIS P - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        .typewriter-text {
+            display: inline-block;
+            border-right: 2px solid #1a1a1a;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: blinkCursor 0.7s step-end infinite;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        @keyframes blinkCursor {
+          0%, 100% { border-color: transparent; }
+          50% { border-color: #1a1a1a; }
+        }
+
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #1a1a1a;
+            position: fixed;
+            width: 100%;
+            padding: 1rem 2rem;
+            z-index: 1000;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: flex-end;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #00b7ff;
+        }
+
+        /* Hero Section */
+       
+        #hero {
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #00b7ff, #007bff);
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+        }
+         
+        .hero-content {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+         
+
+        .typewriter {
+            display: inline-block;
+            border-right: 2px solid #1a1a1a;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: blinkCursor 0.7s step-end infinite;
+        }
+
+        @keyframes blinkCursor {
+            0%, 100% { border-color: transparent; }
+            50% { border-color: #1a1a1a; }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #1a1a1a;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .btn:hover {
+            background-color: #333;
+        }
+
+        .btn {
+            background-color: #fff;
+            color: #007bff;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            width: 50px;
+            height: 4px;
+            background-color: #007bff;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* About Section */
+        #about p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Projects Section */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+           
+            perspective: 1000px;
+            width: 300px;
+            height: 400px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeInUp 1s forwards;
+            background-color: #6780b6;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.2s; }
+        .project-card:nth-child(2) { animation-delay: 0.4s; }
+        .project-card:nth-child(3) { animation-delay: 0.6s; }
+        .project-card:nth-child(4) { animation-delay: 0.8s; }
+
+        .project-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .project-card:hover .project-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .project-card-front, .project-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card-front {
+            z-index: 2;
+        }
+
+        .project-card-back {
+            transform: rotateY(180deg);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .project-card-content {
+            padding: 1.5rem;
+        }
+
+        .project-card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card-back h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #007bff;
+        }
+
+        .project-card-back p {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+           
+        }
+
+        .skill {
+            background-color: #6780b6;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 1rem;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        .skill:nth-child(1) { animation-delay: 0.2s; }
+        .skill:nth-child(2) { animation-delay: 0.3s; }
+        .skill:nth-child(3) { animation-delay: 0.4s; }
+        .skill:nth-child(4) { animation-delay: 0.5s; }
+
+        /* Contact Section */
+        #contact p {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        #contact a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        #contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Scroll Animation Trigger */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 1rem;
+            }
+
+            .project-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li> <a href="#education">Education</a></li>
+            <li><a href="#certificate">Certificate</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+        </ul>
+    </nav>
+ 
+    <section id="hero">
+    <div class="hero-content">
+
+      <h1>Hi, I'm NITHIS P</h1>
+      <p class="typewriter-text">
+        <span>I’m Interested in | </span>
+        <span id="typed-text" style="color: gold;"></span>
+      </p>
+      <h3 style="color: #1a1a1a;">Language Known</h3>
+      <br />
+      <p> HTML | CSS | JAVASCRIPT | REACT JS | BOOSTRAP | JAVA </p>
+      <a href="#contact" class="btn">Get in Touch</a>
+    </div>
+  </section>
+
+     
+
+    <section id="about" class="animate-on-scroll">
+        <h2>About Me</h2>
+        <p>I’m a passionate and dedicated developer with a strong interest in building efficient, user-friendly, and scalable digital solutions. With hands-on experience in software development, web technologies, and database management, I enjoy solving real-world problems through code. I’m always eager to learn, collaborate with teams, and contribute to meaningful projects. Currently open to work and excited for opportunities to grow and make an impact in the tech industry.</p>
+    </section>
+    
+    <section id="education"class="animate-on-scroll">
+        <h2>Education</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-card-inner"  style="background-color: #ffffff;">
+                    <div class="project-card-front">
+                        
+                        <div class="project-card-content">
+                            <h3 style="text-align: center; margin-top:55%;" >SSLC</h3>
+                       
+                        </div>
+                    </div>
+                    <div class="project-card-back">
+                        <h3>STATE BOARD</h3>
+                        <h4>Institution:</h4>
+                        <p>Seventh Day Matric Higher Secondary School </p>
+                        <h4>Year:</h4>
+                        <p>2016-2017</p>
+                        <h4>Percentage:</h4>
+                        <p>75%</p>
+                        <h4>Location:</h4>
+                        <p>Tiruchirapalli</p>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-card-inner"  style="background-color: #ffffff;">
+                    <div class="project-card-front">
+                        
+                        <div class="project-card-content">
+                            <h3 style="text-align: center; margin-top: 55%;">HSC</h3>
+                           
+                        </div>
+                    </div>
+                    <div class="project-card-back">
+                         <h3>STATE BOARD</h3>
+                        <h4 >Institution:</h4>
+                        <p style="display: inline-block;"> National College Higher Secondary School</p>
+                        <h4>Year:</h4>
+                        <p>2017-2019</p>
+                        <h4>Percentage:</h4>
+                        <p>50%</p>
+                        <h4>Location:</h4>
+                        <p> Tiruchirapalli</p>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card"  >
+                <div class="project-card-inner" style="background-color: #ffffff;">
+                    <div class="project-card-front">
+                      
+                       
+                        <div class="project-card-content">
+                            <h3 style= "margin-top: 55%; text-align: center;">UG</h3>
+                           
+                        </div>
+                    </div>
+                    <div class="project-card-back">
+                        <h3>Bharathidasan University </h3>
+                        <h4>Institution:</h4>
+                        <p>Jamal Mohmmad College</p>
+                        <h4>Year:</h4>
+                        <p>2019-2022</p>
+                        <h4>Percentage:</h4>
+                        <p>80%</p>
+                        <h4>Location:</h4>
+                        <p>Tiruchirapalli</p>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+            <br>
+                <br>
+             <div class="project-card">
+                <div class="project-card-inner"  style="background-color: #ffffff;">
+                    <div class="project-card-front" >
+                        <div class="project-card-content">
+                            <h3 style="text-align: center; margin-top: 55%;">PG</h3>
+                        </div>
+                    </div>
+                    <div class="project-card-back">
+                        <h3>Bharathidasan University</h3>
+                        <h4>Institution:</h4>
+                        <p>Bishop Heber College</p>
+                        <h4>Year:</h4>
+                        <p>2022-2024</p>
+                        <h4>Percentage:</h4>
+                        <p>70</p>
+                        <h4>Location:</h4>
+                        <p>Tiruchirapalli</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </section>
+
+    <section id="projects" class="animate-on-scroll">
+        <h2>My Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-card-inner"  style="background-color: #ffffff;">
+                    <div class="project-card-front">
+                        <img  src="../portfolio/proj/fashion_blog_clothes-2-1400x788.webp"  alt="Project 1">
+                        <div class="project-card-content">
+                            <h3 style="display: inline-block;">Project One</h3>
+                            <p style="display: inline-block;">E-commerce Platform</p>
+                        </div>
+                    </div>
+                    <div class="project-card-back">
+                        <h3>Project One</h3>
+                        <p>Discover the latest trends in men’s fashion with our premium collection of shirts, pants, t-shirts, hoodies, and accessories. Designed for comfort and style, our curated pieces suit every occasion. Enjoy fast shipping, secure payment options, and 24/7 support. Elevate your wardrobe with just a click—shop now!</p>
+                        <a href=https://github.com/nithisP/E-commerce-website>view</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-card-inner"  style="background-color: #ffffff;">
+                    <div class="project-card-front">
+                        <img src="https://via.placeholder.com/300x200" alt="Project 2">
+                        <div class="project-card-content">
+                            <h3>Project Two</h3>
+                            <p>Task Management App</p>
+                        </div>
+                    </div>
+                    <div class="project-card-back">
+                        <h3>Project Two</h3>
+                        <p>A task management app developed using Python and Django, with a focus on team collaboration and task automation.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-card-inner"  style="background-color: #ffffff;">
+                    <div class="project-card-front">
+                        <img src="https://via.placeholder.com/300x200" alt="Project 3">
+                        <div class="project-card-content">
+                            <h3>Project Three</h3>
+                            <p>Portfolio Website</p>
+                        </div>
+                    </div>
+                    <div class="project-card-back">
+                        <h3>Project Three</h3>
+                        <p>A portfolio website template with modern animations and responsive design, built with HTML, CSS, and JavaScript.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="animate-on-scroll">
+        <h2>My Skills</h2>
+        <div class="skills-grid">
+
+            <span class="skill">HTML</span>
+            <span class="skill">CSS</span>
+            <span class="skill">javascript</span>
+            <span class="skill">React js(Basic)</span>
+            <span class="skill">Java</span>
+        </div>
+    </section>
+     
+    <section id="certificate" class="animate-on-scroll">
+        <h2>Certificate</h2>
+        <p style="display: inline; padding-left: 25%;">Fullstack developer: <a href="#">fullstack</a></p>
+        <p style="display: inline; padding-left: 10%;">typewriting:<a href="#">typewriting</a></p>
+
+    </section>
+
+    <section id="contact" class="animate-on-scroll">
+        <h2>Contact Me</h2>
+        <p>Feel free to reach out for collaboration or inquiries!</p>
+        <p>Resume : <a href="https://drive.google.com/file/d/1MIVdyYzxBUqiAKJ-T6vv97rM1lb6u--e/view?usp=sharing">Resume</a></p>
+        <p>Email: <a href="nithisnithu7@gmail.com">nithisnithu7@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/nithis-p-067402358/" target="_blank">NITHIS P</a></p>
+    </section>
+
+    <script>
+
+         document.querySelectorAll('nav a').forEach(anchor => {
+         anchor.addEventListener('click', function (e) {
+         e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        window.scrollTo({
+          top: targetElement.offsetTop - 60,
+          behavior: 'smooth',
+        });
+      });
+    });
+
+    // Animate on Scroll
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.4 });
+
+    animateElements.forEach(element => observer.observe(element));
+
+    // Typewriter Effect
+    const roles = ['Frontend Developer', 'Backend Developer', 'Java Developer'];
+    let roleIndex = 0;
+    let charIndex = 0;
+    const typingSpeed = 100;
+    const erasingSpeed = 50;
+    const delayBetweenRoles = 2000; // 2 seconds
+
+    const typedTextSpan = document.getElementById('typed-text');
+
+    function type() {
+      if (charIndex < roles[roleIndex].length) {
+        typedTextSpan.textContent += roles[roleIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(type, typingSpeed);
+      } else {
+        setTimeout(erase, delayBetweenRoles);
+      }
+    }
+
+    function erase() {
+      if (charIndex > 0) {
+        typedTextSpan.textContent = roles[roleIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(erase, erasingSpeed);
+      } else {
+        roleIndex = (roleIndex + 1) % roles.length;
+        setTimeout(type, typingSpeed);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      setTimeout(type, 1000);
+    });
+    </script>
+</body>
+</html>
